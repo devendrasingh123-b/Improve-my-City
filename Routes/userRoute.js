@@ -1,5 +1,7 @@
 const express=require("express");
 // const UserModel = require("../models/UserModel");
+// UserModel
+const UserModel = require("../models/userModel");
 
 const userRoute=express.Router()
 require('dotenv').config()
@@ -15,7 +17,6 @@ const nodemailer = require("nodemailer");
 const passport = require('passport');
 const BlacklistTokenModel = require("../models/blacklistTokenModel");
 const BlacklistCheckMiddleware = require("../middelware/BlacklistCheckMiddleware");
-const UserModel = require("../models/userModel");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 
