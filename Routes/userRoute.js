@@ -245,10 +245,29 @@ userRoute.post("/forgot-password", async (req, res) => {
 
     let resetPasswordLink = `${process.env.CLIENT_URL}/reset-password?token=${resetToken}`;
 
+
+    const htmlBody = `
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Password Reset</title>
+</head>
+<body>
+  <h2>Password Reset</h2>
+  <p>Hello ${user.username},</p>
+  <p>Click below to reset your password:</p>
+  <a href="${resetPasswordLink}">Reset Password</a>
+  <p>This link is valid for 20 minutes.</p>
+</body>
+</html>
+`;
+
+
     await sendEmail({
       to: user.email,
       subject: "Password Reset Link",
-      html: htmlBody(resetPasswordLink, user.username),
+      html: htmlBody
     });
 
     res.json({ message: "Password Reset Link Sent To Registered Email" });
