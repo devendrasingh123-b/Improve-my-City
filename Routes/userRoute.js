@@ -15,11 +15,15 @@ var jwt = require('jsonwebtoken');
 const sendEmail=require("../utils/sendEmail")
 
 
+
+
+
 // for Google 
 
 const passport = require('passport');
 const BlacklistTokenModel = require("../models/blacklistTokenModel");
 const BlacklistCheckMiddleware = require("../middelware/BlacklistCheckMiddleware");
+const sendEmail = require("../utils/sendEmail");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 
@@ -271,6 +275,10 @@ userRoute.post("/forgot-password", async (req, res) => {
       subject: "Password Reset Link",
       html: htmlBody
     });
+
+
+    console.log(htmlBody)
+
 
     res.json({ message: "Password Reset Link Sent To Registered Email" });
 
