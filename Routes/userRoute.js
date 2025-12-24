@@ -252,22 +252,73 @@ userRoute.post("/forgot-password", async (req, res) => {
     let resetPasswordLink = `${process.env.CLIENT_URL}/reset-password?token=${resetToken}`;
 
 
+//     const htmlBody = `
+// <!doctype html>
+// <html>
+// <head>
+//   <meta charset="utf-8" />
+//   <title>Password Reset</title>
+// </head>
+// <body>
+//   <h2>Password Reset</h2>
+//   <p>Hello ${user.username},</p>
+//   <p>Click below to reset your password:</p>
+//   <a href="${resetPasswordLink}">Reset Password</a>
+//   <p>This link is valid for 20 minutes.</p>
+// </body>
+// </html>
+// `;
+
+
+
     const htmlBody = `
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <title>Password Reset</title>
 </head>
-<body>
-  <h2>Password Reset</h2>
-  <p>Hello ${user.username},</p>
-  <p>Click below to reset your password:</p>
-  <a href="${resetPasswordLink}">Reset Password</a>
-  <p>This link is valid for 20 minutes.</p>
+<body style="margin:0;padding:0;background:#f4f5fb;font-family:Arial,Helvetica,sans-serif;">
+  <div style="max-width:600px;margin:20px auto;background:#ffffff;border-radius:10px;overflow:hidden;border:1px solid #e5e7eb;">
+    <div style="background:#2563eb;color:#ffffff;padding:16px 20px;">
+      <h2 style="margin:0;font-size:20px;">Password Reset Request</h2>
+    </div>
+
+    <div style="padding:18px 20px;color:#111827;font-size:14px;line-height:1.6;">
+      <p style="margin:0 0 8px 0;">Dear <strong>${user.username}</strong>,</p>
+      <p style="margin:0 0 10px 0;">
+        We received a request to reset your account password. Click the button below to set a new password.
+        This link will be valid for <strong>20 minutes</strong>.
+      </p>
+
+      <div style="text-align:center;margin:18px 0;">
+        <a href="${resetPasswordLink}"
+           style="display:inline-block;padding:10px 18px;background:#2563eb;color:#ffffff;
+                  text-decoration:none;border-radius:6px;font-weight:bold;font-size:14px;">
+          Reset Password
+        </a>
+      </div>
+
+      <p style="margin:0 0 8px 0;">
+        If the button above doesn’t work, copy and paste this link into your browser:
+      </p>
+      <p style="word-break:break-all;margin:0 0 14px 0;">
+        <a href="${resetPasswordLink}" style="color:#2563eb;">${resetPasswordLink}</a>
+      </p>
+
+      <p style="margin:0;color:#6b7280;font-size:12px;">
+        If you did not request this, you can safely ignore this email. Your password will not be changed.
+      </p>
+    </div>
+
+    <div style="padding:10px 20px;background:#f9fafb;border-top:1px solid #e5e7eb;font-size:12px;color:#9ca3af;">
+      <p style="margin:0;">Regards,<br/><strong>Authority</strong></p>
+    </div>
+  </div>
 </body>
 </html>
 `;
+
 
 
     await sendEmail({
