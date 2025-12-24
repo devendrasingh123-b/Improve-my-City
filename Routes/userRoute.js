@@ -12,7 +12,7 @@ var jwt = require('jsonwebtoken');
 // const nodemailer = require("nodemailer");
 
 // send Email utility
-const sendEmail=require("../utils/sendEmail")
+// const sendEmail=require("../utils/sendEmail")
 
 
 
