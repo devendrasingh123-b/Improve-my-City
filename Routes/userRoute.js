@@ -160,10 +160,11 @@ if(user.length==0){
         
   // res.status(200).json({"msg":"google Login successful",token})
         res.redirect(`${process.env.CLIENT_URL}/home?token=${token}&username=${newUser.username}&role=${newUser.role}&email=${newUser.email}`);
-
+console.log(process.env.CLIENT_URL)
      
      
 }else{
+  console.log(process.env.CLIENT_URL)
 
 let token=jwt.sign({userId:user[0]._id,role:user[0].role},process.env.JWT_SECRET_KEY)
   // res.status(200).json({"msg":"google Login successful",token})

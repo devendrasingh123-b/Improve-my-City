@@ -8,7 +8,7 @@ const profileRoute = require("./Routes/ProfileRute")
 const issueRoute = require("./Routes/issueRoute")
 require('dotenv').config()
 
-
+// console.log(process.env.CLIENT_URL)
 
 let port=process.env.PORT||3000
 // console.log(process.env.PORT)
