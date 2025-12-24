@@ -179,14 +179,43 @@ let token=jwt.sign({userId:user[0]._id,role:user[0].role},process.env.JWT_SECRET
 
 // forget Password
 
+// const transporter = nodemailer.createTransport({
+//   host: "smtp.gmail.com", /// Simple Mail Transport Protocol
+//   port: 587,
+//   secure: false, // true for 465, false for other ports
+//   auth: {
+//     /// We cannot directly use Google email and password
+//     /// Google has security policy
+//     /// Create An App in Google Account, use that app's password
+//     user: process.env.GOOGLE_APP_EMAIL,
+//     pass: process.env.GOOGLE_APP_PASSWORD,
+//   },
+// });
+
+
+// ooptiion two 
+
+
+// const transporter = nodemailer.createTransport({
+//   host: "smtp.gmail.com",
+//   port: 587,
+//   secure: false, // IMPORTANT
+//   auth: {
+//     user: process.env.GOOGLE_APP_EMAIL,
+//     pass: process.env.GOOGLE_APP_PASSWORD,
+//   },
+//   tls: {
+//     rejectUnauthorized: false, // Render fix
+//   },
+// });
+
+
+
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com", /// Simple Mail Transport Protocol
-  port: 587,
-  secure: false, // true for 465, false for other ports
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
   auth: {
-    /// We cannot directly use Google email and password
-    /// Google has security policy
-    /// Create An App in Google Account, use that app's password
     user: process.env.GOOGLE_APP_EMAIL,
     pass: process.env.GOOGLE_APP_PASSWORD,
   },
@@ -214,6 +243,7 @@ userRoute.post("/forgot-password", async (req, res) => {
     // ⚠️ ye link FRONTEND ka hona chahiye, jahan tum reset page banaoge
     // Example: http://localhost:5173/reset-password?token=...
     let resetPasswordLink = `${process.env.CLIENT_URL}/reset-password?token=${resetToken}`;
+    console.log("Hello ji this is the chek or "+ process.env.CLIENT_URL)
 
     const htmlBody = `
 <!doctype html>
