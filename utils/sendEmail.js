@@ -15,7 +15,8 @@ const sendEmail = async ({ to, subject, html }) => {
     // });
 
 const response = await resend.emails.send({
-  from: "Authority <onboarding@resend.dev>",
+from: "onboarding@resend.dev",
+
   to,
   subject,
   html

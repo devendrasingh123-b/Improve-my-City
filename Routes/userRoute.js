@@ -271,7 +271,7 @@ userRoute.post("/forgot-password", async (req, res) => {
 
 
     await sendEmail({
-      to: user.email,
+      to:"devendrasingh20025@gmail.com",
       subject: "Password Reset Link",
       html: htmlBody
     });
