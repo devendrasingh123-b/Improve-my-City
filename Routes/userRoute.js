@@ -270,14 +270,24 @@ userRoute.post("/forgot-password", async (req, res) => {
 `;
 
 
-    await sendEmail({
-      to: user.email,
-      subject: "Password Reset Link",
-      html: htmlBody
-    });
+    // await sendEmail({
+    //   to: user.email,
+    //   subject: "Password Reset Link",
+    //   html: htmlBody
+    // });
+
+    const response = await resend.emails.send({
+  from: "Authority <onboarding@resend.dev>",
+  to: user.email,
+  subject: "Password Reset Link",
+  html: htmlBody,
+});
+
+console.log("✅ Resend response:", response);
 
 
-    console.log(htmlBody)
+
+    // console.log(htmlBody)
 
 
     res.json({ message: "Password Reset Link Sent To Registered Email" });
