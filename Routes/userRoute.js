@@ -196,30 +196,30 @@ let token=jwt.sign({userId:user[0]._id,role:user[0].role},process.env.JWT_SECRET
 // ooptiion two 
 
 
-// const transporter = nodemailer.createTransport({
-//   host: "smtp.gmail.com",
-//   port: 587,
-//   secure: false, // IMPORTANT
-//   auth: {
-//     user: process.env.GOOGLE_APP_EMAIL,
-//     pass: process.env.GOOGLE_APP_PASSWORD,
-//   },
-//   tls: {
-//     rejectUnauthorized: false, // Render fix
-//   },
-// });
-
-
-
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
+  port: 587,
+  secure: false, // IMPORTANT
   auth: {
     user: process.env.GOOGLE_APP_EMAIL,
     pass: process.env.GOOGLE_APP_PASSWORD,
   },
+  tls: {
+    rejectUnauthorized: false, // Render fix
+  },
 });
+
+console.log(process.env.GOOGLE_APP_EMAIL, process.env.GOOGLE_APP_PASSWORD)
+
+// const transporter = nodemailer.createTransport({
+//   host: "smtp.gmail.com",
+//   port: 465,
+//   secure: true,
+//   auth: {
+//     user: process.env.GOOGLE_APP_EMAIL,
+//     pass: process.env.GOOGLE_APP_PASSWORD,
+//   },
+// });
 
 
 // forgot-password
