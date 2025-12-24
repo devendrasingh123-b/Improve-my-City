@@ -213,7 +213,7 @@ userRoute.post("/forgot-password", async (req, res) => {
 
     // ⚠️ ye link FRONTEND ka hona chahiye, jahan tum reset page banaoge
     // Example: http://localhost:5173/reset-password?token=...
-    let resetPasswordLink = `http://localhost:5173/reset-password?token=${resetToken}`;
+    let resetPasswordLink = `${process.env.CLIENT_URL}/reset-password?token=${resetToken}`;
 
     const htmlBody = `
 <!doctype html>
