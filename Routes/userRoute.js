@@ -209,7 +209,8 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-console.log(process.env.GOOGLE_APP_EMAIL, process.env.GOOGLE_APP_PASSWORD)
+console.log(process.env.GOOGLE_APP_EMAIL)
+console.log("ha ye bhi deko "+ process.env.GOOGLE_APP_PASSWORD)
 
 // const transporter = nodemailer.createTransport({
 //   host: "smtp.gmail.com",
@@ -245,6 +246,8 @@ userRoute.post("/forgot-password", async (req, res) => {
     let resetPasswordLink = `${process.env.CLIENT_URL}/reset-password?token=${resetToken}`;
     console.log("Hello ji this is the chek or "+ process.env.CLIENT_URL)
 
+    console.log(process.env.GOOGLE_APP_EMAIL)
+console.log("ha ye bhi deko "+ process.env.GOOGLE_APP_PASSWORD)
     const htmlBody = `
 <!doctype html>
 <html lang="en">
