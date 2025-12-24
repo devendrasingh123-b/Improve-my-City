@@ -229,9 +229,11 @@ let token=jwt.sign({userId:user[0]._id,role:user[0].role},process.env.JWT_SECRET
 // forgot-password
 
 userRoute.post("/forgot-password", async (req, res) => {
+  
   try {
     const { email } = req.body;
 
+    console.log("Forgot password request for email:", email)
     let user = await UserModel.findOne({ email });
     if (!user) {
       return res.status(404).json({ message: "User Not Found" });
