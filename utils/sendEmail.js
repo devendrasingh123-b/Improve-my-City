@@ -7,12 +7,23 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 const sendEmail = async ({ to, subject, html }) => {
   try {
-    await resend.emails.send({
-      from: "Authority <onboarding@resend.dev>",
-      to,
-      subject,
-      html,
-    });
+    // await resend.emails.send({
+    //   from: "Authority <onboarding@resend.dev>",
+    //   to,
+    //   subject,
+    //   html,
+    // });
+
+const response = await resend.emails.send({
+  from: "Authority <onboarding@resend.dev>",
+  to,
+  subject,
+  html
+});
+
+console.log("✅ Resend response:", response);
+
+
   } catch (error) {
     console.error("Resend Email Error:", error);
     throw error;
