@@ -328,7 +328,7 @@ userRoute.post("/forgot-password", async (req, res) => {
     });
 
 
-    console.log(htmlBody)
+    // console.log(htmlBody)
 
 
     res.json({ message: "Password Reset Link Sent To Registered Email" });
