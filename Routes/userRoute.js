@@ -159,7 +159,7 @@ if(user.length==0){
     
         
   // res.status(200).json({"msg":"google Login successful",token})
-        res.redirect(`http://localhost:5173/home?token=${token}&username=${newUser.username}&role=${newUser.role}&email=${newUser.email}`);
+        res.redirect(`${process.env.CLIENT_URL}/home?token=${token}&username=${newUser.username}&role=${newUser.role}&email=${newUser.email}`);
 
      
      
@@ -167,7 +167,7 @@ if(user.length==0){
 
 let token=jwt.sign({userId:user[0]._id,role:user[0].role},process.env.JWT_SECRET_KEY)
   // res.status(200).json({"msg":"google Login successful",token})
-       res.redirect(`http://localhost:5173/home?token=${token}&username=${user[0].username}&role=${user[0].role}&email=${user[0].email}`);
+       res.redirect(`${process.env.CLIENT_URL}/home?token=${token}&username=${user[0].username}&role=${user[0].role}&email=${user[0].email}`);
 }
 
   });
