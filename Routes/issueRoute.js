@@ -241,6 +241,7 @@ await NotificationModel.create({
     issue.stage = status || "Resolved";
     issue.handledBy = req.user; // admin id from token
 
+    console.log("hello ji how are you")
 console.log(issue)
 
     await issue.save();
