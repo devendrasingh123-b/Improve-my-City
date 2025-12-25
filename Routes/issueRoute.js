@@ -11,7 +11,7 @@ const NotificationModel = require("../models/notificationModel");
 
 
 
-notifi
+
 const issueRoute = express.Router();
 
 // Cloudinary config
