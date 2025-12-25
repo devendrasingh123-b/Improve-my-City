@@ -271,22 +271,31 @@ const htmlBody = issueUpdateHtml({
 });
 
 // send mail
-await transporter.sendMail({
-  from: `"${profileId.name || "Support"}" <${process.env.GOOGLE_APP_EMAIL}>`,
-  to: (issue.user.username && issue.user.email) || "fallback@example.com",
-  subject: `Update on your issue: ${issue.title}`,
-  html: htmlBody,
-});
+// await transporter.sendMail({
+//   from: `"${profileId.name || "Support"}" <${process.env.GOOGLE_APP_EMAIL}>`,
+//   to: (issue.user.username && issue.user.email) || "fallback@example.com",
+//   subject: `Update on your issue: ${issue.title}`,
+//   html: htmlBody,
+// });
+
+
+try {
+  await transporter.sendMail({
+    from: `"Support" <${process.env.GOOGLE_APP_EMAIL}>`,
+    to: issue.user.email,
+    subject: `Update on your issue`,
+    html: htmlBody
+  });
+} catch (emailErr) {
+  console.log("⚠️ Email failed but ignored:", emailErr.message);
+}
 
 
 
 
 
 
-
-
-
-    res.status(200).json({
+   return  res.status(200).json({
       success: true,
       message: "Issue updated successfully!",
       issue,
