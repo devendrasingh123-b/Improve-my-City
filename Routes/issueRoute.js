@@ -7,9 +7,11 @@ const issueModel = require("../models/issueModel");
 require("dotenv").config();
 const nodemailer = require("nodemailer");
 const profileModule = require("../models/ProfileModel");
+const NotificationModel = require("../models/notificationModel");
 
 
 
+notifi
 const issueRoute = express.Router();
 
 // Cloudinary config
@@ -206,22 +208,31 @@ const issueUpdateHtml = ({ user, issue, admin, frontendUrl, time }) => `
 
 
 
+
 // ✅ Update issue status (Admin only)
 issueRoute.put("/issues/:id", authMiddleware(["admin"]), async (req, res) => {
 
-  // console.log("hello ji kuch to aga na bro")
+  // console.log("hello ")
   try {
     const { id } = req.params;
-    const { status } = req.body; // e.g., "Completed"
+    const { status } = req.body; // e.g., "Resolved"
     console.log(status)
     console.log(id)
 
     const issue = await issueModel.findById(id).populate("user").populate("handledBy");
-    let   profileId=await profileModule.find({loginId:req.user})
+    // let   profileId=await profileModule.find({loginId:req.user})
+    let profileId = await profileModule.findOne({ loginId: req.user });
+
     //  console.log(req.user+""+profileId)
 
+//notiftion create
+await NotificationModel.create({
+  userId: issue.user._id,   // ✅ issue owner
+  title: "Issue Status Updated",
+  message: `Your issue "${issue.title}" is now ${status}`,
+  stage: status||"Resolved",
+});
 
-    
     if (!issue) {
       return res.status(404).json({ success: false, message: "Issue not found" });
     }

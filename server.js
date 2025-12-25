@@ -6,6 +6,7 @@ const userRoute = require("./Routes/userRoute")
 const TodoRoutes = require("./Routes/TodoRoute")
 const profileRoute = require("./Routes/ProfileRute")
 const issueRoute = require("./Routes/issueRoute")
+const notificationRoute = require("./Routes/notificationRoute")
 require('dotenv').config()
 
 // console.log(process.env.CLIENT_URL)
@@ -24,6 +25,7 @@ app.use("/users",userRoute)
 app.use("/todo",TodoRoutes)
 app.use("/profile",profileRoute)
 app.use("/issue",issueRoute)
+app.use("/notifications",notificationRoute)
 
 app.get("/test",(req,res)=>{
     res.send("This is test rout")
